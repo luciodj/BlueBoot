@@ -1,0 +1,152 @@
+#!/usr/bin/env python
+#
+# Bluetooth Bootloader for PIC16F1  
+# 
+# Author: Lucio Di Jasio
+# url: blog.flyingpic24.com
+#
+import serial
+import serial.tools.list_ports as lp
+import time
+import sys
+import intelhex
+
+__version__ = 0.1
+
+cmdREBOOT   =  'R' 
+cmdWRITE    =  'W' 
+cmdACK      =  'A'
+ew_block = 32
+app_start = 512
+flash_size = 8192
+
+class info:
+    dHex = []
+
+
+"""
+Protocol Description.
+
+    Serial protocol is a typical master-slave communication protocol, where
+    master (PC) sends commands and slave (bootloader equipped device) executes
+    them and acknowledges execution.
+
+    * Command format.
+    
+    <CMD_CODE[0]><ADDRESS[0..1]> <DATA[0..31]>
+    |---- 1 -----|------ 2 -----|--   32  ---|
+
+    CMD_CODE - Command index (TCmd). W - Erase/Write, R - reset 
+               Length: 1 byte. 
+    ADDRESS  - Address field. Flash start address for CMD_CODE command operation.
+               Length: 2 bytes. 
+    DATA     - Data array.
+               Length: 32 bytes. 
+
+
+    Command Table:
+     --------------------------+---------------------------------------------------
+    |       Description        |                      Format                       |
+    | Restart MCU              |                  <cmdREBOOT>                      |
+    | Write to MCU flash       |      <cmdWRITE><START_ADDR>< DATA_ARRAY>          |
+     ------------------------------------------------------------------------------ 
+     
+    Every write commands must receive a reply (upon completion) with the acknowledge code 
+"""
+#----------------------------------------------------------------------
+def Connect():
+    global h
+    portgen = lp.grep( 'cu.FireFly')
+    for port,_,_ in portgen: break      # catch the first one
+    print 'port=',port
+    if port: 
+        h = serial.Serial( port, baudrate=19200)
+        print h
+        h.flushInput()
+    else: raise ConnectionFailed
+
+def ConnectLoop():
+    print "Connecting..."
+    while True:
+        try:
+            Connect()    
+        except:
+            print "Reset board and keep checking ..."
+            time.sleep(1)
+        else:
+            break;
+    # succeeded, obtained a handle 
+    print "Connected!"
+    
+def WriteRow( waddr):
+    print "Write: 0x%x " % waddr
+    iaddr = waddr*2                 # get the byte address
+    count = ew_block         # number of words
+    cmd = bytearray([cmdWRITE])
+    cmd = extend16bit( cmd, waddr)
+    d = info.dHex
+    # pick 32 words out of the hex array
+    for x in xrange( iaddr, iaddr+64, 2):
+        cmd.extend( [ d[x], d[x+1]])
+    # print "cmd: ", [ x for x in cmd]
+    h.write(cmd)                    # send the command
+    r = h.read(1)
+    if r[0] != cmdACK: raise WRITE_ERROR
+
+def ReBoot():
+    # global h
+    print "Rebooting the MCU!"
+    h.write(bytearray( [cmdREBOOT]))
+    Close()
+
+def Close():
+    # global h
+    if h:
+        h.close()
+
+def Load( name):
+    # init and empty code dictionary 
+    info.dHex = None
+    try:
+        info.dHex = intelhex.IntelHex( name)
+        return True
+    except:
+        return False
+
+def extend16bit( lista, word):
+    lista.extend([ word%256, word/256])
+    return lista
+
+def EmptyRow( waddr):
+    iaddr = waddr*2
+    for x in xrange( ew_block * 2):
+        if info.dHex[ iaddr+x] != 0xff: return False
+    return True
+
+def Execute():
+    # program blocks app_start..flash_size (if not FF)
+    # print "writeBlock= %d, last block = %d" % ( wwblk, last)
+    for x in xrange( app_start/ew_block, flash_size/ew_block):            # write all  rows starting from second erase block
+        if not EmptyRow( x * ew_block):            # skip empty rows
+            # print "WriteRow( %X)" % (x * wwblk)
+            WriteRow( x*ew_block)                  # write to device
+
+#----------------------------------------------------------------------------
+
+if __name__ == '__main__':
+    # if a file name is not passed
+    if len(sys.argv) == 1:
+        print "Usage: %s file.hex"
+        exit(1)
+    # load the hex file provided
+    if not Load( sys.argv[1]):
+        print "File %s not found" % sys.argv[1]
+        exit(1)
+    # loops until gets a connection
+    ConnectLoop()
+    # run the erase/program sequence
+    Execute()
+    # 
+    ReBoot()
+
+
