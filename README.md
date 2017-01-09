@@ -33,5 +33,5 @@ Need:
 * ...
 
 ## Related Projects and Demos
-* Check the {Rocket](https://github.com/luciodj/Rocket) projects for more demos like this one using Mplab Code Configurator and the MikoE CLick(tm) boards.
+* Check the [Rocket](https://github.com/luciodj/Rocket) projects for more demos like this one using Mplab Code Configurator and the MikoE CLick(tm) boards.
 * Check the [Simplicity](https://github.com/luciodj/Simplicity) project for more demos like this one using the MPLAB Code Configurator and the MikroE Click(tm) boards.
