@@ -13,7 +13,7 @@
   @Description
     This header file provides APIs for driver for EUSART.
     Generation Information :
-        Product Revision  :  MPLAB� Code Configurator - v2.25.1
+        Product Revision  :  MPLAB� Code Configurator - v2.25.2
         Device            :  PIC16F1709
         Driver Version    :  2.00
     The generated drivers are tested against the following:

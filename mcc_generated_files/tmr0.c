@@ -8,12 +8,12 @@
     tmr0.c
 
   @Summary
-    This is the generated driver implementation file for the TMR0 driver using MPLAB® Code Configurator
+    This is the generated driver implementation file for the TMR0 driver using MPLABï¿½ Code Configurator
 
   @Description
     This source file provides APIs for TMR0.
     Generation Information :
-        Product Revision  :  MPLAB® Code Configurator - v2.25.1
+        Product Revision  :  MPLABï¿½ Code Configurator - v2.25.2
         Device            :  PIC16F1709
         Driver Version    :  2.00
     The generated drivers are tested against the following:

@@ -13,7 +13,7 @@
   Description:
     This header file provides implementations for pin APIs for all pins selected in the GUI.
     Generation Information :
-        Product Revision  :  MPLAB� Code Configurator - v2.25.1
+        Product Revision  :  MPLAB� Code Configurator - v2.25.2
         Device            :  PIC16F1709
         Driver Version    :  1.02
     The generated drivers are tested against the following:
@@ -49,25 +49,25 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <stdbool.h>
 
 void PIN_MANAGER_Initialize(void) {
-//    LATA = 0x00;
-//    LATB = 0x00;
-    LATC = 0x00;
-    
+    LATA = 0x00;
     TRISA = 0x37;
-    TRISB = 0xF0;
-    TRISC = 0xFC;
-    
     ANSELA = 0x13;
-    ANSELB = 0x10;
-    ANSELC = 0xCC;
+    WPUA = 0x00;
 
-//    WPUA = 0x00;
-//    WPUB = 0x00;
-//    WPUC = 0x00;
+    LATB = 0x00;
+    TRISB = 0xF0;
+    ANSELB = 0x10;
+    WPUB = 0x00;
+
+    LATC = 0x00;
+    TRISC = 0xFC;
+    ANSELC = 0xCC;
+    WPUC = 0x00;
 
     OPTION_REGbits.nWPUEN = 0x01;
 
-//    bool state = GIE;
+
+    bool state = GIE;
     GIE = 0;
     PPSLOCK = 0x55;
     PPSLOCK = 0xAA;
@@ -75,10 +75,10 @@ void PIN_MANAGER_Initialize(void) {
 
     RXPPSbits.RXPPS = 0x0D; // RB5->EUSART:RX
     RB7PPSbits.RB7PPS = 0x14; // RB7->EUSART:TX
-//    PPSLOCK = 0x55;
-//    PPSLOCK = 0xAA;
-//    PPSLOCKbits.PPSLOCKED = 0x01; // lock PPS
-//    GIE = state;
+    PPSLOCK = 0x55;
+    PPSLOCK = 0xAA;
+    PPSLOCKbits.PPSLOCKED = 0x01; // lock PPS
+    GIE = state;
 }
 /**
  End of File

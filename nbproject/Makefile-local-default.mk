@@ -14,23 +14,23 @@
 # You can invoke make with the values of the macros:
 # $ makeMP_CC="/opt/microchip/mplabc30/v3.30c/bin/pic30-gcc" ...  
 #
-PATH_TO_IDE_BIN=/Applications/microchip/mplabx/v3.00/mplab_ide.app/Contents/Resources/mplab_ide/mplab_ide/modules/../../bin/
+PATH_TO_IDE_BIN=/Applications/microchip/mplabx/v3.45/mplab_ide.app/Contents/Resources/mplab_ide/platform/../mplab_ide/modules/../../bin/
 # Adding MPLAB X bin directory to path.
-PATH:=/Applications/microchip/mplabx/v3.00/mplab_ide.app/Contents/Resources/mplab_ide/mplab_ide/modules/../../bin/:$(PATH)
+PATH:=/Applications/microchip/mplabx/v3.45/mplab_ide.app/Contents/Resources/mplab_ide/platform/../mplab_ide/modules/../../bin/:$(PATH)
 # Path to java used to run MPLAB X when this makefile was created
-MP_JAVA_PATH="/Applications/microchip/mplabx/v3.00/sys/java/jre1.7.0_71.jre/Contents/Home/bin/"
+MP_JAVA_PATH="/Applications/microchip/mplabx/v3.45/sys/java/jre1.8.0_91.jre/Contents/Home/bin/"
 OS_CURRENT="$(shell uname -s)"
-MP_CC="/Applications/microchip/xc8/v1.34/bin/xc8"
+MP_CC="/Applications/microchip/xc8/v1.40/bin/xc8"
 # MP_CPPC is not defined
 # MP_BC is not defined
-MP_AS="/Applications/microchip/xc8/v1.34/bin/xc8"
-# MP_LD is not defined
+MP_AS="/Applications/microchip/xc8/v1.40/bin/xc8"
+MP_LD="/Applications/microchip/xc8/v1.40/bin/xc8"
 # MP_AR is not defined
-DEP_GEN=${MP_JAVA_PATH}java -jar "/Applications/microchip/mplabx/v3.00/mplab_ide.app/Contents/Resources/mplab_ide/mplab_ide/modules/../../bin/extractobjectdependencies.jar"
-MP_CC_DIR="/Applications/microchip/xc8/v1.34/bin"
+DEP_GEN=${MP_JAVA_PATH}java -jar "/Applications/microchip/mplabx/v3.45/mplab_ide.app/Contents/Resources/mplab_ide/platform/../mplab_ide/modules/../../bin/extractobjectdependencies.jar"
+MP_CC_DIR="/Applications/microchip/xc8/v1.40/bin"
 # MP_CPPC_DIR is not defined
 # MP_BC_DIR is not defined
-MP_AS_DIR="/Applications/microchip/xc8/v1.34/bin"
-# MP_LD_DIR is not defined
+MP_AS_DIR="/Applications/microchip/xc8/v1.40/bin"
+MP_LD_DIR="/Applications/microchip/xc8/v1.40/bin"
 # MP_AR_DIR is not defined
 # MP_BC_DIR is not defined

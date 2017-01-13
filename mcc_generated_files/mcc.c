@@ -13,7 +13,7 @@
   @Description:
     This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
-        Product Revision  :  MPLAB� Code Configurator - v2.25.1
+        Product Revision  :  MPLAB� Code Configurator - v2.25.2
         Device            :  PIC16F1709
         Driver Version    :  1.02
     The generated drivers are tested against the following:

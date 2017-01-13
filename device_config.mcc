@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<configuration device="PIC16F1709" mcc_version="v2.25.1">
+<configuration device="PIC16F1709" mcc_version="v2.25.2">
     <managers>
         <manager generated="true" name="Pin Manager" reloadPin="manual">
             <setting name="package" option="DIP20"/>
@@ -9,8 +9,8 @@
             <resource customName="TX" digital="true" direction="INPUT" function="TX" ioc="0" module="EUSART" name="RB7" start="false" type="pin" wpu="false"/>
             <resource customName="LED0" digital="true" direction="OUTPUT" function="RC0" ioc="0" module="GPIO" name="RC0" start="false" type="pin" wpu="false"/>
             <resource customName="LED1" digital="true" direction="OUTPUT" function="RC1" ioc="0" module="GPIO" name="RC1" start="false" type="pin" wpu="false"/>
-            <file checksum="4141346838" modified="true" name="pin_manager.c" path="mcc_generated_files/pin_manager.c"/>
-            <file checksum="4154050928" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
+            <file checksum="1628826475" modified="false" name="pin_manager.c" path="mcc_generated_files/pin_manager.c"/>
+            <file checksum="234342769" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
         </manager>
         <manager generated="true" name="System" reloadPin="manual">
             <initializer comment="" name="Initialize">
@@ -47,8 +47,8 @@
             <setting name="PLLEN" option="ON"/>
             <setting name="BORV" option="LO"/>
             <setting name="generateConfigBits" option="true"/>
-            <file checksum="196161132" modified="false" name="mcc.c" path="mcc_generated_files/mcc.c"/>
-            <file checksum="4223930930" modified="false" name="mcc.h" path="mcc_generated_files/mcc.h"/>
+            <file checksum="447295085" modified="false" name="mcc.c" path="mcc_generated_files/mcc.c"/>
+            <file checksum="73929267" modified="false" name="mcc.h" path="mcc_generated_files/mcc.h"/>
         </manager>
     </managers>
     <modules>
@@ -87,8 +87,8 @@
             <setting name="inputBuffer" option="8"/>
             <setting name="outputBuffer" option="8"/>
             <setting name="stdio" option="true"/>
-            <file checksum="134522556" modified="false" name="eusart.c" path="mcc_generated_files/eusart.c"/>
-            <file checksum="4159930723" modified="false" name="eusart.h" path="mcc_generated_files/eusart.h"/>
+            <file checksum="315008701" modified="false" name="eusart.c" path="mcc_generated_files/eusart.c"/>
+            <file checksum="92569956" modified="false" name="eusart.h" path="mcc_generated_files/eusart.h"/>
         </module>
         <module generated="true" mode="GPIO" name="GPIO" order="1" reloadPin="manual" type="GPIO">
             <resource customName="LED0" digital="true" direction="OUTPUT" function="RC0" ioc="0" module="GPIO" name="RC0" start="false" type="pin" wpu="false"/>
@@ -109,8 +109,8 @@
             </initializer>
             <setting name="TMRI" option="false"/>
             <setting name="ticker" option="0"/>
-            <file checksum="3988611647" modified="false" name="tmr0.c" path="mcc_generated_files/tmr0.c"/>
-            <file checksum="722491399" modified="false" name="tmr0.h" path="mcc_generated_files/tmr0.h"/>
+            <file checksum="4241712570" modified="false" name="tmr0.c" path="mcc_generated_files/tmr0.c"/>
+            <file checksum="2043370370" modified="false" name="tmr0.h" path="mcc_generated_files/tmr0.h"/>
         </module>
     </modules>
 </configuration>
